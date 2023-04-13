@@ -9,7 +9,7 @@ import (
 func main() {
 	configFilePathFlag := flag.String("f", "", "path to the config JSON file")
 	flag.Parse()
-	if (configFilePathFlag == nil) {
+	if (*configFilePathFlag == "") {
 		log.Fatalf("[ERROR]: gen_uint_enum: '-f' is required")
 	}
 	descriptor := maker.CreateUintEnumDescriptorFromJSON(*configFilePathFlag)

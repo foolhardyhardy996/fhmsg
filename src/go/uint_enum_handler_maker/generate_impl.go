@@ -13,7 +13,7 @@ func GenImpl(descriptor *UintEnumDescriptor) {
 		log.Fatalf("[ERROR]: GenImpl: %v", err)
 	}
 	templateStrs := []string{
-		fmt.Sprintf("#include <%s.h>\n#include <%s_err.h>\n", descriptor.EnumCommonName, descriptor.EnumCommonName),
+		fmt.Sprintf("#include \"%s.h\"\n#include \"%s_err.h\"\n", descriptor.EnumCommonName, descriptor.EnumCommonName),
 		uint_enum_validate_definition_tmpl, 
 		uint_enum_deserialize_definition_tmpl,
 		uint_enum_serialize_definition_tmpl}

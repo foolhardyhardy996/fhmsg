@@ -19,6 +19,8 @@ func genDeclHeader(descriptor *UintEnumDescriptor) {
 	}
 	templateStrs := []string{
 		"#pragma once\n",
+		"#include <stdint.h>\n#include <stdlib.h>\n#include <stdio.h>\n",
+		"#include \"handle_integer_field.h\"\n",
 		uint_enum_value_define_tmpl, 
 		uint_enum_struct_declaration_tmpl,
 		uint_enum_func_declaration_tmpl}
