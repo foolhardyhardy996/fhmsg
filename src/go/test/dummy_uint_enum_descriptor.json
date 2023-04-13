@@ -1,0 +1,24 @@
+{
+    "EnumCommonName": "terminal_on_board_enum",
+    "UintBitSize": 8,
+    "BigEndian": true, 
+    "ErrCodeBase": "0x40000000",
+    "ValueRange": [
+        {
+            "ValueCommonName": "fpga",
+            "Value": "0x01"
+        }, 
+        {
+            "ValueCommonName": "asic",
+            "Value": "0x02"
+        },
+        {
+            "ValueCommonName": "core1",
+            "Value": "0x03"
+        },
+        {
+            "ValueCommonName": "core2",
+            "Value": "0x04"
+        }
+    ]
+}
