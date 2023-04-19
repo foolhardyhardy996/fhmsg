@@ -23,10 +23,10 @@ For the ease of design and using, we define the following terms:
 
 ## Interfaces
 For certain structured message format and certain message field type, there are four interfaces provided:
-- marshal_binary
-- unmarshal_binary
-- marshal_text
-- unmarshal_text
+- enc_binary
+- dec_binary
+- enc_text
+- dec_text
 
 ## Acknowledgements
 
