@@ -10,6 +10,17 @@ This project provides a framework for automatically generating construction/pars
 - Support custom enumeration types
 - Generate code in plain C
 
+## Concepts
+For the ease of design and using, we define the following terms:
+
+- **Structured Message Format**: a definite collection of message field.
+- **uint**: 
+- **bytes**: 
+- **reserved**: 
+- **uint_enum**:
+- **bytes_enum**: 
+- **flags**: 
+
 ## Acknowledgements
 
 - Li Weida, initiater
