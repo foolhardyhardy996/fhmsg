@@ -21,6 +21,13 @@ For the ease of design and using, we define the following terms:
 - **bytes_enum**: 
 - **flags**: 
 
+## Interfaces
+For certain structured message format and certain message field type, there are four interfaces provided:
+- marshal_binary
+- unmarshal_binary
+- marshal_text
+- unmarshal_text
+
 ## Acknowledgements
 
 - Li Weida, initiater
