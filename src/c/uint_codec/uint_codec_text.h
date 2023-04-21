@@ -5,6 +5,7 @@
  * ["type"]_[enc/dec]_[binary/text]_["format"]()
  */
 
+// for dec functions, bufsz is not required, but I reserved them for interface consistency
 int uint8_dec_text_hex(uint8_t *output, char *buffer, int bufsz, int *len);
 int uint8_enc_text_hex(const uint8_t *input, char *buffer, int bufsz, int *len);
 int uint8_dec_text_decimal(uint8_t *output, char *buffer, int bufsz, int *len);
