@@ -29,7 +29,7 @@ int is_le(void) {
     return is_little_endian;
 }
 
-int uint8_dec_binary_be(uint8_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint8_dec_binary_be(uint8_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 1;
     if (output == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: uint8_dec_binary_be: output == NULL\n");
@@ -44,13 +44,13 @@ int uint8_dec_binary_be(uint8_t *output, const uint8_t *buffer, int bufsz, int *
         return FHMSG_ERR_BUFFSIZE;
     }
     *output = buffer[0];
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint8_enc_binary_be(const uint8_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint8_enc_binary_be(const uint8_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 1;
     if (buffer == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: uint8_enc_binary_be: output == NULL\n");
@@ -61,13 +61,13 @@ int uint8_enc_binary_be(const uint8_t *input, uint8_t *buffer, int bufsz, int *l
         return FHMSG_ERR_BUFFSIZE;
     }
     buffer[0] = *input;
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint8_dec_binary_le(uint8_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint8_dec_binary_le(uint8_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 1;
     if (output == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: uint8_dec_binary_le: output == NULL\n");
@@ -82,13 +82,13 @@ int uint8_dec_binary_le(uint8_t *output, const uint8_t *buffer, int bufsz, int *
         return FHMSG_ERR_BUFFSIZE;
     }
     *output = buffer[0];
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint8_enc_binary_le(const uint8_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint8_enc_binary_le(const uint8_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 1;
     if (buffer == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: uint8_enc_binary_le: output == NULL\n");
@@ -99,13 +99,13 @@ int uint8_enc_binary_le(const uint8_t *input, uint8_t *buffer, int bufsz, int *l
         return FHMSG_ERR_BUFFSIZE;
     }
     buffer[0] = *input;
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint16_dec_binary_be(uint16_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint16_dec_binary_be(uint16_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 2;
     uint8_t *cast_output;
     int i = 0;
@@ -129,13 +129,13 @@ int uint16_dec_binary_be(uint16_t *output, const uint8_t *buffer, int bufsz, int
             cast_output[i] = buffer[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint16_enc_binary_be(const uint16_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint16_enc_binary_be(const uint16_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 2;
     const uint8_t *cast_input;
     int i;
@@ -159,13 +159,13 @@ int uint16_enc_binary_be(const uint16_t *input, uint8_t *buffer, int bufsz, int 
             buffer[i] = cast_input[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint16_dec_binary_le(uint16_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint16_dec_binary_le(uint16_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 2;
     uint8_t *cast_output;
     int i = 0;
@@ -189,13 +189,13 @@ int uint16_dec_binary_le(uint16_t *output, const uint8_t *buffer, int bufsz, int
             cast_output[i] = buffer[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint16_enc_binary_le(const uint16_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint16_enc_binary_le(const uint16_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 2;
     const uint8_t *cast_input;
     int i;
@@ -219,13 +219,13 @@ int uint16_enc_binary_le(const uint16_t *input, uint8_t *buffer, int bufsz, int 
             buffer[i] = cast_input[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint32_dec_binary_be(uint32_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint32_dec_binary_be(uint32_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 4;
     uint8_t *cast_output;
     int i = 0;
@@ -249,13 +249,13 @@ int uint32_dec_binary_be(uint32_t *output, const uint8_t *buffer, int bufsz, int
             cast_output[i] = buffer[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint32_enc_binary_be(const uint32_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint32_enc_binary_be(const uint32_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 4;
     const uint8_t *cast_input;
     int i;
@@ -279,13 +279,13 @@ int uint32_enc_binary_be(const uint32_t *input, uint8_t *buffer, int bufsz, int 
             buffer[i] = cast_input[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint32_dec_binary_le(uint32_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint32_dec_binary_le(uint32_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 4;
     uint8_t *cast_output;
     int i = 0;
@@ -309,13 +309,13 @@ int uint32_dec_binary_le(uint32_t *output, const uint8_t *buffer, int bufsz, int
             cast_output[i] = buffer[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint32_enc_binary_le(const uint32_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint32_enc_binary_le(const uint32_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 4;
     const uint8_t *cast_input;
     int i;
@@ -339,13 +339,13 @@ int uint32_enc_binary_le(const uint32_t *input, uint8_t *buffer, int bufsz, int 
             buffer[i] = cast_input[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint64_dec_binary_be(uint64_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint64_dec_binary_be(uint64_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 8;
     uint8_t *cast_output;
     int i = 0;
@@ -369,13 +369,13 @@ int uint64_dec_binary_be(uint64_t *output, const uint8_t *buffer, int bufsz, int
             cast_output[i] = buffer[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint64_enc_binary_be(const uint64_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint64_enc_binary_be(const uint64_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 8;
     const uint8_t *cast_input;
     int i;
@@ -399,13 +399,13 @@ int uint64_enc_binary_be(const uint64_t *input, uint8_t *buffer, int bufsz, int 
             buffer[i] = cast_input[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint64_dec_binary_le(uint64_t *output, const uint8_t *buffer, int bufsz, int *len) {
+int uint64_dec_binary_le(uint64_t *output, const uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 8;
     uint8_t *cast_output;
     int i = 0;
@@ -429,13 +429,13 @@ int uint64_dec_binary_le(uint64_t *output, const uint8_t *buffer, int bufsz, int
             cast_output[i] = buffer[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
 
-int uint64_enc_binary_le(const uint64_t *input, uint8_t *buffer, int bufsz, int *len) {
+int uint64_enc_binary_le(const uint64_t *input, uint8_t *buffer, int bufsz, int *scanned) {
     int expected_len = 8;
     const uint8_t *cast_input;
     int i;
@@ -459,8 +459,8 @@ int uint64_enc_binary_le(const uint64_t *input, uint8_t *buffer, int bufsz, int 
             buffer[i] = cast_input[expected_len-1-i];
         }
     }
-    if (len != NULL) {
-        *len = expected_len;
+    if (scanned != NULL) {
+        *scanned = expected_len;
     }
     return 0;
 }
