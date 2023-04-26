@@ -4,82 +4,82 @@
 #include <stdio.h>
 #include <string.h>
 
-int bytes_dec_binary_cpy(uint8_t *outbuf, int outlen, const uint8_t *buffer, int bufsz, int *len) {
-    if (outbuf == NULL) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_cpy: outbuf == NULL\n");
+int bytes_dec_binary_cpy(struct bytes_struct *bytes, const uint8_t *buffer, int bufsz, int *scanned) {
+    if (bytes == NULL) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_cpy: bytes == NULL\n");
         return FHMSG_ERR_NULL;
     }
     if (buffer == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_cpy: buffer == NULL\n");
         return FHMSG_ERR_NULL;
     }
-    if (bufsz < outlen) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_cpy: bufsz < outlen\n");
+    if (bufsz < bytes->len) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_cpy: bufsz < bytes->len\n");
         return FHMSG_ERR_BUFFSIZE;
     }
-    memcpy(outbuf, buffer, outlen);
-    if (len != NULL) {
-        *len = outlen;
+    memcpy(bytes->buf, buffer, bytes->len);
+    if (scanned != NULL) {
+        *scanned = bytes->len;
     }
     return 0;
 }
 
-int bytes_enc_binary_cpy(const uint8_t *inbuf, int inlen, uint8_t *buffer, int bufsz, int *len) {
-    if (inbuf == NULL) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_cpy: inbuf == NULL\n");
+int bytes_enc_binary_cpy(const struct bytes_struct *bytes, uint8_t *buffer, int bufsz, int *scanned) {
+    if (bytes == NULL) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_cpy: bytes == NULL\n");
         return FHMSG_ERR_NULL;
     }
     if (buffer == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_cpy: buffer == NULL\n");
         return FHMSG_ERR_NULL;
     }
-    if (bufsz < inlen) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_cpy: bufsz < inlen\n");
+    if (bufsz < bytes->len) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_cpy: bufsz < bytes->len\n");
         return FHMSG_ERR_BUFFSIZE;
     }
-    memcpy(buffer, inbuf, inlen);
-    if (len != NULL) {
-        *len = inlen;
+    memcpy(buffer, bytes->buf, bytes->len);
+    if (scanned != NULL) {
+        *scanned = bytes->len;
     }
     return 0;
 }
 
-int bytes_dec_binary_ref(uint8_t **outref, int outlen, const uint8_t *buffer, int bufsz, int *len) {
-    if (outref == NULL) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_ref: outref == NULL\n");
+int bytes_dec_binary_ref(struct bytes_struct *bytes, const uint8_t *buffer, int bufsz, int *scanned) {
+    if (bytes == NULL) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_ref: bytes == NULL\n");
         return FHMSG_ERR_NULL;
     }
     if (buffer == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_ref: buffer == NULL\n");
         return FHMSG_ERR_NULL;
     }
-    if (bufsz < outlen) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_ref: bufsz < outlen\n");
+    if (bufsz < bytes->len) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_dec_binary_ref: bufsz < bytes->len\n");
         return FHMSG_ERR_BUFFSIZE;
     }
-    *outref = (uint8_t *) buffer;
-    if (len != NULL) {
-        *len = outlen;
+    bytes->buf = (uint8_t *) buffer;
+    if (scanned != NULL) {
+        *scanned = bytes->len;
     }
     return 0;
 }
 
-int bytes_enc_binary_ref(const uint8_t *inref, int inlen, uint8_t *buffer, int bufsz, int *len) {
-    if (inref == NULL) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_ref: inref == NULL\n");
+int bytes_enc_binary_ref(const struct bytes_struct *bytes, uint8_t *buffer, int bufsz, int *scanned) {
+    if (bytes == NULL) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_ref: bytes == NULL\n");
         return FHMSG_ERR_NULL;
     }
     if (buffer == NULL) {
         FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_ref: buffer == NULL\n");
         return FHMSG_ERR_NULL;
     }
-    if (bufsz < inlen) {
-        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_ref: bufsz < inlen\n");
+    if (bufsz < bytes->len) {
+        FHMSG_DEBUG_printf("[ERROR]: bytes_enc_binary_ref: bufsz < bytes->len\n");
         return FHMSG_ERR_BUFFSIZE;
     }
-    memcpy(buffer, inref, inlen);
-    if (len != NULL) {
-        *len = inlen;
+    memcpy(buffer, bytes->buf, bytes->len);
+    if (scanned != NULL) {
+        *scanned = bytes->len;
     }
     return 0;
 }
