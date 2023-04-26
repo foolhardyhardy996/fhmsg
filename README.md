@@ -14,6 +14,8 @@ This project provides a framework for automatically generating construction/pars
 For the ease of design and using, we define the following terms:
 
 - **Structured Message Format**: a definite collection of message field.
+- **Structured Message Block**: 
+- **Primitive Field**:
 - **uint**: 
 - **bytes**: 
 - **reserved**: 
