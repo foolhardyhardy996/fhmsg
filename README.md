@@ -23,6 +23,49 @@ For the ease of design and using, we define the following terms:
 - **bytes_enum**: 
 - **flags**: 
 
+## Definition
+```
+{
+    "type": "uint",
+    "name": "foo",
+    "bit_size": 8,
+    "endianness": "big",
+}
+
+{
+    "type": "bytes",
+    "name": "bar",
+    "length": 13,
+}
+
+{
+    "type": "reserved", 
+    "name": "baz",
+    "length": 2,
+}
+
+{
+    "type": "dynamic",
+    "file": "fuu.py"
+    "func": "func_name",
+}
+
+{
+    "type": "block"
+    "name": "stupid_block",
+    "fields": [
+        "name", 
+        {
+            ???
+        }, 
+        {
+
+        }
+    ], 
+
+}
+```
+
 ## Interfaces
 For certain structured message format and certain message field type, there are four interfaces provided:
 - enc_binary
