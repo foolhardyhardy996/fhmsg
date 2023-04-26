@@ -36,7 +36,7 @@ int bytes_dec_text_nosep(uint8_t *outbuf, int outbufsz, char *buffer, int bufsz,
             FHMSG_DEBUG_printf("[ERROR]: bytes_dec_text_nosep: outbuf == NULL && len == NULL\n");
             return FHMSG_ERR_NULL;
         } else {
-            *len = strl;
+            *len = ;
             return 0;
         }
     } 
@@ -46,6 +46,9 @@ int bytes_dec_text_nosep(uint8_t *outbuf, int outbufsz, char *buffer, int bufsz,
     }
     for (; i < least_outbufsz; i++, j += 2) {
         outbuf[i] = hexrepr2byte(buffer[j], buffer[j+1]);
+    }
+    if (len != NULL) {
+        *len = 
     }
 }
 

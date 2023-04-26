@@ -7,7 +7,7 @@
 #include <string.h>
 #include <limits.h>
 
-int uint8_dec_text_hex(uint8_t *output, char *buffer, int bufsz, int *len) {
+int uint8_dec_text_hex(uint8_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -21,18 +21,21 @@ int uint8_dec_text_hex(uint8_t *output, char *buffer, int bufsz, int *len) {
     }
     output_holder = strtoull(buffer, &end_of_parse, 16);
     if (end_of_parse == buffer) {
-        FHMSG_DEBUG_printf("[ERROR]: uint8_dec_text_hex: fail to parse '%s'\n", buffer);
+        FHMSG_DEBUG_printf("[ERROR]: uint8_dec_text_hex: fail to parse");
         return FHMSG_ERR_FORMAT;
     }
     if (output_holder > UCHAR_MAX) {
-        FHMSG_DEBUG_printf("[ERROR]: uint8_dec_text_hex: %d out of range\n", output_holder);
+        FHMSG_DEBUG_printf("[ERROR]: uint8_dec_text_hex: %llu out of range\n", output_holder);
         return FHMSG_ERR_RANGE;
     }
     *output = (uint8_t) output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint8_enc_text_hex(const uint8_t *input, char *buffer, int bufsz, int *len) {
+int uint8_enc_text_hex(const uint8_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[8] = {0};
     int sbufsz = 8;
     int ret;
@@ -55,13 +58,13 @@ int uint8_enc_text_hex(const uint8_t *input, char *buffer, int bufsz, int *len) 
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret;
     }
     return 0;
 }
 
-int uint8_dec_text_decimal(uint8_t *output, char *buffer, int bufsz, int *len) {
+int uint8_dec_text_decimal(uint8_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -83,10 +86,13 @@ int uint8_dec_text_decimal(uint8_t *output, char *buffer, int bufsz, int *len) {
         return FHMSG_ERR_RANGE;
     }
     *output = (uint8_t) output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint8_enc_text_decimal(const uint8_t *input, char *buffer, int bufsz, int *len) {
+int uint8_enc_text_decimal(const uint8_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[8] = {0};
     int sbufsz = 8;
     int ret;
@@ -109,13 +115,13 @@ int uint8_enc_text_decimal(const uint8_t *input, char *buffer, int bufsz, int *l
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret;
     }
     return 0;
 }
 
-int uint16_dec_text_hex(uint16_t *output, char *buffer, int bufsz, int *len) {
+int uint16_dec_text_hex(uint16_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -137,10 +143,13 @@ int uint16_dec_text_hex(uint16_t *output, char *buffer, int bufsz, int *len) {
         return FHMSG_ERR_RANGE;
     }
     *output = (uint16_t) output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint16_enc_text_hex(const uint16_t *input, char *buffer, int bufsz, int *len) {
+int uint16_enc_text_hex(const uint16_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[16] = {0};
     int sbufsz = 16;
     int ret;
@@ -163,13 +172,13 @@ int uint16_enc_text_hex(const uint16_t *input, char *buffer, int bufsz, int *len
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret;
     }
     return 0;
 }
 
-int uint16_dec_text_decimal(uint16_t *output, char *buffer, int bufsz, int *len) {
+int uint16_dec_text_decimal(uint16_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -191,10 +200,13 @@ int uint16_dec_text_decimal(uint16_t *output, char *buffer, int bufsz, int *len)
         return FHMSG_ERR_RANGE;
     }
     *output = (uint16_t) output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint16_enc_text_decimal(const uint16_t *input, char *buffer, int bufsz, int *len) {
+int uint16_enc_text_decimal(const uint16_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[16] = {0};
     int sbufsz = 16;
     int ret;
@@ -217,13 +229,13 @@ int uint16_enc_text_decimal(const uint16_t *input, char *buffer, int bufsz, int 
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret + 1;
     }
     return 0;
 }
 
-int uint32_dec_text_hex(uint32_t *output, char *buffer, int bufsz, int *len) {
+int uint32_dec_text_hex(uint32_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -245,10 +257,13 @@ int uint32_dec_text_hex(uint32_t *output, char *buffer, int bufsz, int *len) {
         return FHMSG_ERR_RANGE;
     }
     *output = (uint32_t) output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint32_enc_text_hex(const uint32_t *input, char *buffer, int bufsz, int *len) {
+int uint32_enc_text_hex(const uint32_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[32] = {0};
     int sbufsz = 32;
     int ret;
@@ -271,13 +286,13 @@ int uint32_enc_text_hex(const uint32_t *input, char *buffer, int bufsz, int *len
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret;
     }
     return 0;
 }
 
-int uint32_dec_text_decimal(uint32_t *output, char *buffer, int bufsz, int *len) {
+int uint32_dec_text_decimal(uint32_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -299,10 +314,13 @@ int uint32_dec_text_decimal(uint32_t *output, char *buffer, int bufsz, int *len)
         return FHMSG_ERR_RANGE;
     }
     *output = (uint32_t) output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint32_enc_text_decimal(const uint32_t *input, char *buffer, int bufsz, int *len) {
+int uint32_enc_text_decimal(const uint32_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[32] = {0};
     int sbufsz = 32;
     int ret;
@@ -325,13 +343,13 @@ int uint32_enc_text_decimal(const uint32_t *input, char *buffer, int bufsz, int 
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret;
     }
     return 0;
 }
 
-int uint64_dec_text_hex(uint64_t *output, char *buffer, int bufsz, int *len) {
+int uint64_dec_text_hex(uint64_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -353,10 +371,13 @@ int uint64_dec_text_hex(uint64_t *output, char *buffer, int bufsz, int *len) {
         return FHMSG_ERR_RANGE;
     }
     *output = output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint64_enc_text_hex(const uint64_t *input, char *buffer, int bufsz, int *len) {
+int uint64_enc_text_hex(const uint64_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[32] = {0};
     int sbufsz = 32;
     int ret;
@@ -379,13 +400,13 @@ int uint64_enc_text_hex(const uint64_t *input, char *buffer, int bufsz, int *len
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret;
     }
     return 0;
 }
 
-int uint64_dec_text_decimal(uint64_t *output, char *buffer, int bufsz, int *len) {
+int uint64_dec_text_decimal(uint64_t *output, char *buffer, int bufsz, int *scanned) {
     uint64_t output_holder;
     char *end_of_parse;
 
@@ -407,10 +428,13 @@ int uint64_dec_text_decimal(uint64_t *output, char *buffer, int bufsz, int *len)
         return FHMSG_ERR_RANGE;
     }
     *output = output_holder;
+    if (scanned != NULL) {
+        *scanned = end_of_parse - buffer;
+    }
     return 0;
 }
 
-int uint64_enc_text_decimal(const uint64_t *input, char *buffer, int bufsz, int *len) {
+int uint64_enc_text_decimal(const uint64_t *input, char *buffer, int bufsz, int *scanned) {
     char safe_buffer[32] = {0};
     int sbufsz = 32;
     int ret;
@@ -433,8 +457,8 @@ int uint64_enc_text_decimal(const uint64_t *input, char *buffer, int bufsz, int 
         return FHMSG_ERR_BUFFSIZE;
     }
     strcpy(buffer, safe_buffer);
-    if (len != NULL) {
-        *len = ret + 1;
+    if (scanned != NULL) {
+        *scanned = ret;
     }
     return 0;
 }
