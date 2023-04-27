@@ -1,4 +1,9 @@
 #pragma once 
 
-int bytes_dec_text_nosep(uint8_t *outbuf, int outbufsz, int *outlen, char *buffer, int bufsz, int *scanned);
-int bytes_enc_text_nosep(const uint8_t *inbuf, int inlen, char *buffer, int bufsz, int *scanned);
+#include "bytes_struct.h"
+
+/* Usage note:
+ * if bytes->buf == NULL, bytes->len is set to expected bufcap.
+ */
+int bytes_dec_text_nosep(struct bytes_struct *bytes, const char *buffer, int bufsz, int *scanned);
+int bytes_enc_text_nosep(const struct bytes_struct *bytes, char *buffer, int bufsz, int *scanned);
